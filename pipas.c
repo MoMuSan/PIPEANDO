@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-int main()
+int	main(void)
 /*{
 	int	fd;
 	fd = open("example.txt", O_WRONLY | O_CREAT); 
@@ -36,13 +36,15 @@ int main()
 	printf("This line will not be executed.\n");
 	return (0);
 }*/
-
+//fork
 {
+	pid_t	pid = fork();
+
 	fork();
 	fork();
-	if (fork()< 0)
-		printf("Hello\n");
-	else
-		printf("Error\n");
+
+	
+		printf("pid %d\n", pid);
+
 	return (0);
 }
