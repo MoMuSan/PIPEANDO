@@ -106,11 +106,14 @@ int main(int argc, char *argv[], char *envp[])
     {
         //printf ("%s\n", envp[i]);
         if (strncmp(envp[i],var, 5) == 0)
-        {
-          split = ft_split(envp[i],'/');
-       }
+			split = ft_split(&envp[i][5],':');  //le paso la dirección, porque le estoy especificando
+												//la segunda coordenada (que se corresponde con el tamaño de PATH=) 
         i++;
     }
-     printf("%s\n", *split);
+	printf("\n%s\n", *split);
+	printf("ARGC %d ARGV %s\n", argc, *argv);
+	//número de argumentos -- nombre del primer argumento (porque no he señalado ningún otro)
+
+
     return (0);
 }
