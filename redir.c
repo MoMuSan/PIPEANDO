@@ -51,3 +51,4 @@ int	main(void)
 }
 
 int access(const char *pathname, int mode);
+int execve (const char *filename, const char *argv[], const char *envp[]);

@@ -114,23 +114,38 @@ int main(int argc, char *argv[], char *envp[])
     char var[6] = "PATH=";
     char **split;
 	int acc;
+	char *join;
 
     while (envp[i] != NULL)
     {
         //printf ("%s\n", envp[i]);
         if (strncmp(envp[i],var, 5) == 0)
+		
 			split = ft_split(&envp[i][5],':');  //le paso la dirección, porque le estoy especificando
-												//la segunda coordenada (que se corresponde con el tamaño de PATH=) 
+												//la segunda coordenada (que se corresponde con el tamaño de PATH=)
+		 
         i++;
     }
-	printf("\n%s\n", *split);
+	//printf("\n%s\n", *split);
 	//printf("ARGC %d ARGV %s\n", argc, *argv);
 	//número de argumentos -- nombre del primer argumento (porque no he señalado ningún otro)
 	
-	acc = access(*split, X_OK);
+	join = ft_strjoin(*split, *split);
+	printf("%s\n", join);
+	acc = access(join, X_OK);
 	if (acc < 0)
-		printf("No permisos\n");
+		printf ("ERROR\n");
 	else
-		printf("Existe\n");
-    return (0);
+		printf ("VALIDO\n");
+	execve(join, argv, envp);
+	if (execve(join, argv, envp) < 0)
+		perror ("NO FILE\n");
+	else
+		printf("Bien\n");
+
+	
+	
+	
+	
+	return (0);
 }
