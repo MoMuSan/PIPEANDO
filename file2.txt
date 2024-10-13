@@ -1,9 +1,0 @@
-total 40$
--rw-r--r-- 1 monmunoz 2019   144 Sep 22 16:36 README.md$
--rwxr-xr-x 1 monmunoz 2019 16224 Oct  3 20:48 a.out$
--rw-r--r-- 1 monmunoz 2019    19 Oct  3 19:34 file1.txt$
--rwxr-xr-x 1 monmunoz 2019     0 Oct  3 20:48 file2.txt$
--rw-r--r-- 1 monmunoz 2019  1398 Oct  1 20:51 pipas.c$
--rw-r--r-- 1 monmunoz 2019   939 Oct  1 20:36 pipeando.c$
--rw-r--r-- 1 monmunoz 2019   786 Oct  3 20:48 redir.c$
--rw-r--r-- 1 monmunoz 2019   788 Oct  1 21:29 tube.c$

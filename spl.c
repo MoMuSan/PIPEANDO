@@ -1,7 +1,20 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
 
+
+char	*ft_strjoin(const char *s1, const char *s2)
+{
+	char	*s3;
+
+	s3 = (char *)calloc(strlen(s1) + strlen(s2) + 1, sizeof(char));
+	if (!s3)
+		return (NULL);
+	s3 = strcat(s3, s1);
+	s3 = strcat(s3, s2);
+	return ((char *)s3);
+}
 char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
 	char			*sub;
@@ -51,7 +64,6 @@ static int	n_words(const char *s, char c)
 	}
 	return (word);
 }
-
 static char	**free_me(const char *s, char c, char **ptr, int row)
 {
 	int	i;
@@ -80,7 +92,6 @@ static char	**free_me(const char *s, char c, char **ptr, int row)
 	ptr[row] = NULL;
 	return (ptr);
 }
-
 char	**ft_split(const char *s, char c)
 {
 	char	**ptr;
@@ -102,6 +113,8 @@ int main(int argc, char *argv[], char *envp[])
     int i = 0;
     char var[6] = "PATH=";
     char **split;
+	int acc;
+
     while (envp[i] != NULL)
     {
         //printf ("%s\n", envp[i]);
@@ -111,9 +124,13 @@ int main(int argc, char *argv[], char *envp[])
         i++;
     }
 	printf("\n%s\n", *split);
-	printf("ARGC %d ARGV %s\n", argc, *argv);
+	//printf("ARGC %d ARGV %s\n", argc, *argv);
 	//número de argumentos -- nombre del primer argumento (porque no he señalado ningún otro)
-
-
+	
+	acc = access(*split, X_OK);
+	if (acc < 0)
+		printf("No permisos\n");
+	else
+		printf("Existe\n");
     return (0);
 }
