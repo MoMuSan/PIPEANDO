@@ -32,13 +32,13 @@ int	main(void)
 	}
 	if (pid == 0)
 	{
-		op = open("file1.txt", O_RDWR);
+		op = open("/bin/ls", O_RDWR);
 		if (op < 0)
 			return (1);
 		dup2(op, 0);
 		close(fd[0]);
 		dup2(fd[1], 1);
-		execve("/bin/ls", args, NULL);
+		execve("/usr/bin/ls", args, NULL);
 	}
 		op2 = open("file2.txt", O_RDWR | O_CREAT, 0777);
 		if (op2 < 0)
@@ -49,3 +49,6 @@ int	main(void)
 		execve("/bin/cat", argu, NULL);
 	return (0);
 }
+
+int access(const char *pathname, int mode);
+int execve (const char *filename, const char *argv[], const char *envp[]);
