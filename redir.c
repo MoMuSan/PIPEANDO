@@ -52,3 +52,20 @@ int	main(void)
 
 int access(const char *pathname, int mode);
 int execve (const char *filename, const char *argv[], const char *envp[]);
+printf("\n%s\n", *split);
+	printf("ARGC %d ARGV %s\n", argc, *argv);
+	//número de argumentos -- nombre del primer argumento (porque no he señalado ningún otro)
+	
+	join = ft_strjoin(*split, *split);
+	printf("%s\n", join);
+	acc = access(join, X_OK);
+	if (acc < 0)
+		printf ("ERROR\n");
+	else
+		printf ("VALIDO\n");
+	execve(join, argv, envp);
+	if (execve(join, argv, envp) < 0)
+		perror ("NO FILE\n");
+	else
+		printf("Bien\n");	
+	return (0);
