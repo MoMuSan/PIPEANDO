@@ -95,11 +95,11 @@ static char	**free_me(const char *s, char c, char **ptr, int row)
 char	**ft_split(const char *s, char c)
 {
 	char	**ptr;
-	int		start;
+	//int		start;
 	int		row;
 
 	row = 0;
-	start = 0;
+	//start = 0;
 	ptr = (char **)malloc(((n_words(s, c)) + 1) * sizeof(char *));
 	if (!ptr)
 		return (NULL);
@@ -126,26 +126,17 @@ int main(int argc, char *argv[], char *envp[])
 		 
         i++;
     }
-	//printf("\n%s\n", *split);
-	//printf("ARGC %d ARGV %s\n", argc, *argv);
-	//número de argumentos -- nombre del primer argumento (porque no he señalado ningún otro)
-	
-	join = ft_strjoin(*split, *split);
-	printf("%s\n", join);
-	acc = access(join, X_OK);
-	if (acc < 0)
-		printf ("ERROR\n");
-	else
-		printf ("VALIDO\n");
-	execve(join, argv, envp);
-	if (execve(join, argv, envp) < 0)
-		perror ("NO FILE\n");
-	else
-		printf("Bien\n");
-
-	
-	
-	
-	
+	i = 0;
+	while (split[i] != NULL)
+	{
+		join = ft_strjoin(split[i], "/");
+		join = ft_strjoin(join, argv[1]);
+		acc = access(join, F_OK);
+		if (acc == 0)
+			execve(join, &argv[1], envp);
+		i++;
+	}
+	printf("ARGC %d ARGV %s\n", argc, *argv);
+	printf("Not found\n");
 	return (0);
 }
