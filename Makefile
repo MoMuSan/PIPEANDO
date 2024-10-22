@@ -8,36 +8,32 @@ LIBFT	= 	${LIBFT_PATH}/libft.a
 
 EXEC	=		pipex
 
-NAME 		=	libft.a
-
-CC			=	gcc
-
-AR			=	 ar rcs
+CC			=	cc
 
 RM			=	rm -f
 
 CFLAGS		=	-Wall -Werror -Wextra -Iinclude
 
+AR          = ar rcs
+
 .c.o:
-			${CC} ${CFLAGS} -C $< -o ${<:.c=.o}
+			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
-${NAME}:	${OBJS}  ${LIBFT} 
-			cp ${LIBFT} ${NAME}
-			${AR} ${NAME}  ${OBJS}
 
-${EXEC}: 	${OBJS}
+${EXEC}: 	${OBJS} ${LIBFT} 
+			${CC} ${OBJS} -L${LIBFT_PATH} -lft -o ${EXEC}
 
 ${LIBFT}:	
 			make -C ${LIBFT_PATH}
 
-all:		${NAME} ${LIBFT} ${EXEC}
+all:		${LIBFT} ${EXEC}
 			
 clean:
 
 			${RM} ${OBJS} ${LIBFT} ${EXEC}
 
 fclean:		clean
-			${RM} ${NAME} ${LIBFT} ${EXEC}
+			${RM} ${LIBFT} ${EXEC}
 
 re:			fclean all
 
