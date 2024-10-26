@@ -12,9 +12,7 @@ CC			=	cc
 
 RM			=	rm -f
 
-CFLAGS		=	-Wall -Werror -Wextra 
-
-AR          = 	ar rcs
+CFLAGS		=	-Wall -Werror -Wextra -Iinclude
 
 .c.o:
 			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
@@ -30,11 +28,12 @@ ${LIBFT}:
 all:		${LIBFT} ${NAME}
 			
 clean:
-
 			${RM} ${OBJS} ${LIBFT} ${NAME}
+			make -C ${LIBFT_PATH} clean
 
 fclean:		clean
 			${RM} ${LIBFT} ${NAME}
+			make -C ${LIBFT_PATH} fclean
 
 re:			fclean all
 

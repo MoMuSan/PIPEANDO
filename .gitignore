@@ -1,3 +1,4 @@
 a.out
 *.txt
 *.DS_Store
+*.o
