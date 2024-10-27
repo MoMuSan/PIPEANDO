@@ -1,4 +1,4 @@
-SRCS		=	spl.c
+SRCS		=	ft_init.c
 
 OBJS		=	${SRCS:.c=.o}
 
@@ -28,7 +28,7 @@ ${LIBFT}:
 all:		${LIBFT} ${NAME}
 			
 clean:
-			${RM} ${OBJS} ${LIBFT} ${NAME}
+			${RM} ${OBJS} ${LIBFT}
 			make -C ${LIBFT_PATH} clean
 
 fclean:		clean
