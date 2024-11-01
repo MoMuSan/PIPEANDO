@@ -3,19 +3,40 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "ft_pipex.h"
+#include "libft/libft.h"
 
+static char	*ft_strcat(char *dest, const char *src)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (dest[i] != '\0')
+	{
+		i++;
+	}
+	while (src[j] != '\0')
+	{
+		dest[i + j] = src[j];
+		j++;
+	}
+	dest[i + j] = '\0';
+	return (dest);
+}
 
 char	*ft_strjoin(const char *s1, const char *s2)
 {
 	char	*s3;
 
-	s3 = (char *)calloc(ft_strlen(s1) + ft_ft_strlen(s2) + 1, sizeof(char));
+	s3 = (char *)calloc(ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(char));
 	if (!s3)
 		return (NULL);
 	s3 = ft_strcat(s3, s1);
 	s3 = ft_strcat(s3, s2);
 	return ((char *)s3);
 }
+
 char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
 	char			*sub;
@@ -43,6 +64,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	sub[i] = '\0';
 	return ((char *)sub);
 }
+
 static int	n_words(const char *s, char c)
 {
 	int	i;
@@ -65,6 +87,7 @@ static int	n_words(const char *s, char c)
 	}
 	return (word);
 }
+
 static char	**free_me(const char *s, char c, char **ptr, int row)
 {
 	int	i;
@@ -93,6 +116,7 @@ static char	**free_me(const char *s, char c, char **ptr, int row)
 	ptr[row] = NULL;
 	return (ptr);
 }
+
 char	**ft_split(const char *s, char c)
 {
 	char	**ptr;
@@ -106,7 +130,6 @@ char	**ft_split(const char *s, char c)
 	return (ptr);
 }
 
-
 int main(int argc, char *argv[], char *envp[])
 {
 	int		i;
@@ -116,7 +139,6 @@ int main(int argc, char *argv[], char *envp[])
 
 	split = NULL;
 	i = 0;
-
 	if (argc == 1)
 	{
 		printf("No argument\n");
@@ -125,21 +147,22 @@ int main(int argc, char *argv[], char *envp[])
 	while (envp[i] != NULL)
 	{
 		if (strncmp(envp[i], "PATH=", 5) == 0)
-			split = ft_split(&envp[i][5],':');  //le paso la dirección, porque le estoy especificando
-		 i++;									//la segunda coordenada (que se corresponde con el tamaño de PATH=)
+			split = ft_split(&envp[i][5], ':');
+		i++;
 	}
 	i = 0;
 	while (split && split[i] != NULL)
 	{
 		join = ft_strjoin(split[i], "/");
 		join = ft_strjoin(join, argv[1]);
-		acc = access(join, F_OK) && access(join, X_OK);
+		acc = access(join, 0111); //paso solo permisos de execution porque si no existe, no hay nada que hacer
 		if (acc == 0)
 			break ;
 		i++;
 	}
 	execve(join, &argv[1], envp);
 	printf("ARGC= %d ARGV= %s\n", argc, *argv);
-	//printf("Not found\n");
 	return (0);
 }
+//le paso la dirección, porque le estoy especificando
+//la segunda coordenada (que se corresponde con el tamaño de PATH=)
