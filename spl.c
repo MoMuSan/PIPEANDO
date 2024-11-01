@@ -110,33 +110,37 @@ char	**ft_split(const char *s, char c)
 
 int main(int argc, char *argv[], char *envp[])
 {
-    int i = 0;
-    char var[6] = "PATH=";
-    char **split;
-	int acc;
-	char *join;
+	int		i;
+	char	**split;
+	int		acc;
+	char	*join;
 
-    while (envp[i] != NULL)
-    {
-        //printf ("%s\n", envp[i]);
-        if (strncmp(envp[i],var, 5) == 0)
-		
-			split = ft_split(&envp[i][5],':');  //le paso la dirección, porque le estoy especificando
-												//la segunda coordenada (que se corresponde con el tamaño de PATH=)
-		 
-        i++;
-    }
+	split = NULL;
 	i = 0;
-	while (split[i] != NULL)
+
+	if (argc == 1)
+	{
+		printf("No argument\n");
+		return (1);
+	}
+	while (envp[i] != NULL)
+	{
+		if (strncmp(envp[i], "PATH=", 5) == 0)
+			split = ft_split(&envp[i][5],':');  //le paso la dirección, porque le estoy especificando
+		 i++;									//la segunda coordenada (que se corresponde con el tamaño de PATH=)
+	}
+	i = 0;
+	while (split && split[i] != NULL)
 	{
 		join = ft_strjoin(split[i], "/");
 		join = ft_strjoin(join, argv[1]);
-		acc = access(join, F_OK);
+		acc = access(join, F_OK) && access(join, X_OK);
 		if (acc == 0)
-			execve(join, &argv[1], envp);
+			break ;
 		i++;
 	}
-	printf("ARGC %d ARGV %s\n", argc, *argv);
-	printf("Not found\n");
+	execve(join, &argv[1], envp);
+	printf("ARGC= %d ARGV= %s\n", argc, *argv);
+	//printf("Not found\n");
 	return (0);
 }

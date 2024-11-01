@@ -5,9 +5,9 @@
 #include <sys/wait.h>
 
 int	main(void)
-/*{
+{
 	int	fd;
-	fd = open("example.txt", O_WONLY | O_CREAT); 
+	fd = open("example.txt", O_WRONLY | O_CREAT); 
 	//O_CREAT crea el archivo si no existe
 	dup2(fd, STDOUT_FILENO);
 	//STDOUT_FILENO es un int, un fd (el 1 aquí).
@@ -16,7 +16,7 @@ int	main(void)
 	printf("This is it!!\n");
 	//lo muestra en el archivo, no en pantalla
 	return (0);
-}*/
+}
 // Ejemplo de access 
 /*{
 	if (access("example.txt", X_OK) != -1)
@@ -40,7 +40,7 @@ int	main(void)
 
 //fork
 
-{
+/*{
 	pid_t	pid = fork();
 	// fork creates a child process
 
@@ -62,8 +62,7 @@ int	main(void)
 	}
 	return (0);
 }
-
-
+*/
 
 /*{
 	pid_t	pid = fork();
@@ -81,6 +80,4 @@ int	main(void)
 		printf("Parent process. Child PID: %d finished.\n", pid);
 	}
 	return (0);
-}
-*/
-
+}*/

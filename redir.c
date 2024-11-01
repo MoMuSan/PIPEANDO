@@ -50,7 +50,7 @@ int	main(void)
 	return (0);
 }
 
-int access(const char *pathname, int mode);
+/*int access(const char *pathname, int mode);
 int execve (const char *filename, const char *argv[], const char *envp[]);
 printf("\n%s\n", *split);
 	
@@ -69,4 +69,4 @@ printf("\n%s\n", *split);
 		perror ("NO FILE\n");
 	else
 		printf("Bien\n");	
-	return (0);
+	return (0);*/
