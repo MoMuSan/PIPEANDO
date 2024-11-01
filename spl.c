@@ -2,17 +2,18 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include "ft_pipex.h"
 
 
 char	*ft_strjoin(const char *s1, const char *s2)
 {
 	char	*s3;
 
-	s3 = (char *)calloc(strlen(s1) + strlen(s2) + 1, sizeof(char));
+	s3 = (char *)calloc(ft_strlen(s1) + ft_ft_strlen(s2) + 1, sizeof(char));
 	if (!s3)
 		return (NULL);
-	s3 = strcat(s3, s1);
-	s3 = strcat(s3, s2);
+	s3 = ft_strcat(s3, s1);
+	s3 = ft_strcat(s3, s2);
 	return ((char *)s3);
 }
 char	*ft_substr(const char *s, unsigned int start, size_t len)
@@ -25,10 +26,10 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	j = 0;
 	if (!s)
 		return (0);
-	if (start >= (unsigned int)strlen(s))
-		return (strdup(""));
-	if (len > ((size_t)strlen(s) - (size_t)start))
-		len = ((size_t)strlen(s) - (size_t)start);
+	if (start >= (unsigned int)ft_strlen(s))
+		return (ft_strdup(""));
+	if (len > ((size_t)ft_strlen(s) - (size_t)start))
+		len = ((size_t)ft_strlen(s) - (size_t)start);
 	sub = (char *)malloc((len + 1) * sizeof(char));
 	if (!sub)
 		return (NULL);
@@ -95,11 +96,9 @@ static char	**free_me(const char *s, char c, char **ptr, int row)
 char	**ft_split(const char *s, char c)
 {
 	char	**ptr;
-	//int		start;
 	int		row;
 
 	row = 0;
-	//start = 0;
 	ptr = (char **)malloc(((n_words(s, c)) + 1) * sizeof(char *));
 	if (!ptr)
 		return (NULL);
