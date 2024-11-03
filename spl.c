@@ -146,7 +146,7 @@ int main(int argc, char *argv[], char *envp[])
 	}
 	while (envp[i] != NULL)
 	{
-		if (strncmp(envp[i], "PATH=", 5) == 0)
+		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
 			split = ft_split(&envp[i][5], ':');
 		i++;
 	}
