@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int	main(void)
+int	redir(void)
 {
 	int		fd[2];
 	pid_t	pid;
