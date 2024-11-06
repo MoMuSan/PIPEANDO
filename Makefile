@@ -1,4 +1,4 @@
-SRCS		=	ft_init.c ft_kids.c
+SRCS		=	ft_init.c ft_kids.c ft_red.c
 
 OBJS		=	${SRCS:.c=.o}
 

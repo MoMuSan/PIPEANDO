@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 14:47:40 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/11/03 21:08:13 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/11/06 22:53:15 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@
 
 int		ft_init(int argc, char *argv[], char *envp[]);
 void	ft_kids(int argc, char *argv[], char *envp[]);
+void	ft_red(char *split, char *argv, char *envp);
 
 #endif

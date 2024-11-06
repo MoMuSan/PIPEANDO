@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 14:44:48 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/11/03 21:09:10 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/11/06 21:26:46 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int argc, char *argv[], char *envp[])
 		return (1);
 	}
 	ft_init(argc, argv, envp);
-	printf("%s\n", *argv);
+	//printf("INIT\n");
 	return (0);
 }
 

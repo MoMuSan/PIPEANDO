@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_kids.c                                          :+:      :+:    :+:   */
+/*   ft_red.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/01 18:11:24 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/11/06 22:53:07 by monmunoz         ###   ########.fr       */
+/*   Created: 2024/11/06 21:45:43 by monmunoz          #+#    #+#             */
+/*   Updated: 2024/11/06 22:53:46 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pipex.h"
 
-void	ft_kids(int argc, char *argv[], char *envp[])
+void	ft_red(char *split, char *argv, char *envp)
 {
-	int		fd;
+	char	*join;
 	int		i;
-	char	**split;
+	int		acc;
 
 	i = 0;
-	fd = open(argv[0], O_RDONLY);
-	if (fd < 0)
-		perror("ErroR:");
-	while (envp[i] != NULL)
+
+	while (split && split[i] != '\0')
 	{
-		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
-			split = ft_split(&envp[i][5], ':');
+		join = ft_strjoin(&split[i], "/");
+		join = ft_strjoin(join, &argv[1]);
+		acc = access(join, 0111);
+		if (acc == 0)
+			break ;
 		i++;
 	}
-	ft_red(*split, *argv, *envp);
-	printf("ARGC= %d ARGV= %s\n", argc, *argv);
-	//printf(" --%d --- ARGV= %s\n", fd, argv[0]);
+	printf("AAA\n");
+	execve(join, argv[1], &envp);
 }
 
