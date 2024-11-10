@@ -40,13 +40,13 @@ int	redir(void)
 		dup2(fd[1], 1);
 		execve("/usr/bin/ls", args, NULL);
 	}
-		op2 = open("file2.txt", O_RDWR | O_CREAT, 0777);
-		if (op2 < 0)
-			return (1);
-		close(fd[1]);
-		dup2(fd[0], 0);
-		dup2(op2, 1);
-		execve("/bin/cat", argu, NULL);
+	op2 = open("file2.txt", O_RDWR | O_CREAT, 0777);
+	if (op2 < 0)
+		return (1);
+	close(fd[1]);
+	dup2(fd[0], 0);
+	dup2(op2, 1);
+	execve("/bin/cat", argu, NULL);
 	return (0);
 }
 
