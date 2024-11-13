@@ -154,9 +154,10 @@ int main(int argc, char *argv[], char *envp[])
 	while (split && split[i] != NULL)
 	{
 		join = ft_strjoin(split[i], "/");
-		join = ft_strjoin(join, argv[1]);
-		acc = access(join, 0111); //paso solo permisos de execution porque si no existe, no hay nada que hacer
-		if (acc == 0)
+		join = ft_strjoin(join, argv[1]); //join es la ruta
+		acc = access(join, 0111);
+		//paso solo permisos de execution porque si no existe, no hay nada que hacer
+		if (acc == 0) //acc me dice si encuentra argv[1] en join
 			break ;
 		i++;
 	}

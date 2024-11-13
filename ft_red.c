@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 21:45:43 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/11/10 20:48:48 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/11/13 22:54:08 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,12 @@ void	ft_red(char **split, char **argv, char **envp)
 		join = ft_strjoin(split[i], "/");
 		join = ft_strjoin(join, argv[1]);
 		acc = access(join, 0111);
-		if (acc == 0) == AQUÍ HAY UN FALLO (SEGUN JUAN  ¬¬ )
+		if (acc == 0)
 			break ;
 		i++;
 	}
-ESTO NO FUNCIONAAAA !!!!
 
-	printf("%s %s \n", argv[1], join); 
+	printf("%s %s \n", argv[1], join);
 	args[0] = join;
 	args[1] = argv[1];
 	args[2] = 0;
@@ -45,3 +44,10 @@ ESTO NO FUNCIONAAAA !!!!
 	//args[0] = *join;// First argument is the command path
 	//args[1] = argv[1];// Next is the first argument to the command
 	//args[2] = *envp;
+
+
+	** antes de execve() tengo que hacer dup2
+	** crear un hijo para cada comando
+	** tener en cuenta que me pueden pasar la ruta relativa - absoluta
+	
+	

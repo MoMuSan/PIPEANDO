@@ -55,7 +55,8 @@ int execve (const char *filename, const char *argv[], const char *envp[]);
 printf("\n%s\n", *split);
 	
 	printf("ARGC %d ARGV %s\n", argc, *argv);
-	//número de argumentos -- nombre del primer argumento (porque no he señalado ningún otro)
+	//número de argumentos -- 
+	nombre del primer argumento (porque no he señalado ningún otro)
 	
 	join = ft_strjoin(*split, *split);
 	printf("%s\n", join);
