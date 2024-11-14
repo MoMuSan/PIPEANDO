@@ -6,13 +6,13 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 18:11:24 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/11/10 20:43:24 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/11/14 20:46:57 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pipex.h"
 
-void	ft_kids(int argc, char *argv[], char *envp[])
+void	ft_kids(int tub[2], int argc, char *argv[], char *envp[])
 {
 	int		fd;
 	int		i;
@@ -23,6 +23,10 @@ void	ft_kids(int argc, char *argv[], char *envp[])
 	fd = open(argv[0], O_RDONLY);
 	if (fd < 0)
 		perror("ErroR:");
+
+	dup2(fd, 0);
+	close(tub[0]);
+	//dup2(tub[1], 1);
 	while (envp[i] != NULL)
 	{
 		if (ft_strncmp(envp[i], "PATH=", 5) == 0)

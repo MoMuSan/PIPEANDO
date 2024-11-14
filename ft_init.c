@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 14:44:48 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/11/13 22:27:48 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/11/14 19:28:42 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_init(int argc, char *argv[], char *envp[])
 		return (1);
 	}
 	if (pid == 0)
-		ft_kids(argc, &argv[1], envp);
+		ft_kids(tub, argc, &argv[1], envp);
 	return (0);
 }
 

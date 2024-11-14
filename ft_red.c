@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 21:45:43 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/11/13 22:54:08 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/11/14 20:53:23 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,18 @@ void	ft_red(char **split, char **argv, char **envp)
 	while (split && split[i] != NULL)
 	{
 		join = ft_strjoin(split[i], "/");
-		join = ft_strjoin(join, argv[1]);
-		acc = access(join, 0111);
+		join = ft_strjoin(join, argv[2]);
+		printf("acc %s\n", join);
+		acc = access(join, F_OK); 
 		if (acc == 0)
+		{
+			printf("ok\n");
 			break ;
+		}
 		i++;
 	}
 
-	printf("%s %s \n", argv[1], join);
+	printf(" HOLA JOIN %s \n", join);
 	args[0] = join;
 	args[1] = argv[1];
 	args[2] = 0;
@@ -46,8 +50,6 @@ void	ft_red(char **split, char **argv, char **envp)
 	//args[2] = *envp;
 
 
-	** antes de execve() tengo que hacer dup2
+	/** antes de execve() tengo que hacer dup2
 	** crear un hijo para cada comando
-	** tener en cuenta que me pueden pasar la ruta relativa - absoluta
-	
-	
+	** tener en cuenta que me pueden pasar la ruta relativa - absoluta*/

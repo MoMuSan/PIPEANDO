@@ -35,9 +35,9 @@ int	redir(void)
 		op = open("/bin/ls", O_RDWR);
 		if (op < 0)
 			return (1);
-		dup2(op, 0);
-		close(fd[0]);
-		dup2(fd[1], 1);
+		dup2(op, 0);//transformo mi fd en el STDIN
+		close(fd[0]);// cierro extremo de lectura
+		dup2(fd[1], 1);//transformo el extremo de escritura en STDOUT
 		execve("/usr/bin/ls", args, NULL);
 	}
 	op2 = open("file2.txt", O_RDWR | O_CREAT, 0777);
