@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 18:11:24 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/11/19 17:36:36 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/11/19 19:29:48 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_tube(int tub[2], int fd)
 	dup2(fd, 0);
 	close(tub[0]);
 	dup2(tub[1], 1);
-}  n 
+}
 
 void	ft_kids(int tub[2], int argc, char *argv[], char *envp[])
 {
