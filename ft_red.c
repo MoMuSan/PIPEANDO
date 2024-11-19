@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 21:45:43 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/11/14 20:53:23 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/11/19 14:59:14 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,18 @@ void	ft_red(char **split, char **argv, char **envp)
 	char	*join;
 	int		i;
 	int		acc;
-	char	**args;
+	char	*comp;
 
 	envp = NULL;
-	args = NULL;
 	i = 0;
+	comp = 0;
 	while (split && split[i] != NULL)
 	{
+		printf("SPLIT %s\n", *split);
 		join = ft_strjoin(split[i], "/");
-		join = ft_strjoin(join, argv[2]);
-		printf("acc %s\n", join);
-		acc = access(join, F_OK); 
+		printf("SPLIT %s\n", join);
+		comp = ft_strnstr(join, argv[1], ft_strlen(argv[1]));
+		acc = access(join, F_OK);
 		if (acc == 0)
 		{
 			printf("ok\n");
@@ -35,13 +36,8 @@ void	ft_red(char **split, char **argv, char **envp)
 		}
 		i++;
 	}
-
-	printf(" HOLA JOIN %s \n", join);
-	args[0] = join;
-	args[1] = argv[1];
-	args[2] = 0;
-	execve(join, args, envp);
-	perror("execve failed");
+	// execve(join, args, envp);
+	// perror("execve failed");
 }
 
 	//printf("Hello %s\n", &argv[5]);
