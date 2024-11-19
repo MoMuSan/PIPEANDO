@@ -6,19 +6,18 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 18:11:24 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/11/19 13:41:19 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/11/19 17:36:36 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pipex.h"
 
-int	ft_tube(int tub[2], int fd)
+void	ft_tube(int tub[2], int fd)
 {
 	dup2(fd, 0);
 	close(tub[0]);
 	dup2(tub[1], 1);
-	return (0);
-}
+}  n 
 
 void	ft_kids(int tub[2], int argc, char *argv[], char *envp[])
 {
