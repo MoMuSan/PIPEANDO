@@ -6,13 +6,13 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 18:11:24 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/11/19 19:29:48 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/11/20 12:08:52 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pipex.h"
 
-void	ft_tube(int tub[2], int fd)
+void	ft_tube_read(int tub[2], int fd)
 {
 	dup2(fd, 0);
 	close(tub[0]);
@@ -30,7 +30,7 @@ void	ft_kids(int tub[2], int argc, char *argv[], char *envp[])
 	fd = open(argv[0], O_RDONLY);
 	if (fd < 0)
 		perror("ErroR:");
-	ft_tube(&tub[2], fd);
+	ft_tube_read(&tub[2], fd);
 	while (envp[i] != NULL)
 	{
 		if (ft_strncmp(envp[i], "PATH=", 5) == 0)

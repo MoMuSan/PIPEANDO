@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 21:45:43 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/11/19 21:36:21 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/11/20 12:52:57 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ void	ft_red(char **split, char **argv, char **envp)
 	{
 		join = ft_strjoin(split[i], "/");
 		join = ft_strjoin(join, argv[1]);
-		
-	printf("%s\n%s\n", join, argv[1]);
+		//printf("%s\n%s\n", join, argv[1]);
 		if (access(join, F_OK) == 0)
 		{
 			printf("ok\n");
@@ -34,7 +33,7 @@ void	ft_red(char **split, char **argv, char **envp)
 	}
 	execve(join, ft_split(argv[1], ' '), envp);
 	perror("execve failed");
-	printf("___%s_____%s____\n", join, argv[1]);
+	printf("****%s *_____* %s* ____*\n", join, argv[1]);
 }
 
 	//printf("Hello %s\n", &argv[5]);
