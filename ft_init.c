@@ -6,65 +6,71 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 14:44:48 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/11/20 14:58:30 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:58:09 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pipex.h"
 
-int	ft_init(int argc, char *argv[], char *envp[])
+int	ft_init(char *argv[], char *envp[], char *path[])
 {
 	int		tub[2];
-	pid_t	pid;
+	//int		*status;
+	pid_t	first_son;
+	pid_t	second_son;
 
 	if (pipe(tub) == -1)
 	{
 		perror("Pipe error");
 		return (1);
 	}
-	pid = fork();
-	if (pid < 0)
+	first_son = fork();
+	if (first_son < 0)
 	{
 		perror("Fork failed");
 		return (1);
 	}
-	if (pid == 0)
-		ft_kids(tub, argc, &argv[1], envp);
+	if (first_son == 0)
+		ft_kid_one(tub, &argv[1], envp, path);
+	else
+	{
+		second_son = fork();
+		if (second_son < 0)
+		{
+			perror("Fork failed");
+			return (1);
+		}
+		if (second_son == 0)
+		{
+			ft_kid_two(tub, &argv[3], envp, path);
+		}
+		else
+		{
+			close(tub[0]);
+			close(tub[1]);
+			//wait(status);
+		}
+	}
 	return (0);
 }
 
 int	main(int argc, char *argv[], char *envp[])
 {
-// 	int		i;
-// 	char	**cmd1;
+	char	**path;
+	int		i;
 
-// 	i = 0;
+	i = 0;
 	if (argc != 5)
 	{
 		ft_putstr_fd("Wrong number of arguments\n", 1);
 		return (1);
 	}
-	ft_init(argc, argv, envp);
-	return (0);
-}
-
-ft_spaces
-{
-	while (argv[2])
+	while (envp[i] != NULL)
 	{
-		if (argv[2][i] == ' ')
-			cmd1 = ft_split(&argv[2][i], ' ');
-		else
-		{
-			printf("HELLO\n");
-			break ;
-		}
+		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
+			path = ft_split(&envp[i][5], ':');
 		i++;
 	}
-	if (cmd1)
-	{
-		ft_init(argc, cmd1, envp);
-		printf("CMD %s\n", cmd1[0]);
-		printf("CMD1 %s\n", cmd1[1]);
-	}
+	ft_init(argv, envp, path);
+	return (0);
 }
