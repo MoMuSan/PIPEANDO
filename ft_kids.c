@@ -6,12 +6,12 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 18:11:24 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/11/21 20:01:22 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/11/22 17:21:08 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pipex.h"
-
+//read end
 void	ft_tube_read(int tub[2], int fd)
 {
 	dup2(fd, 0);
