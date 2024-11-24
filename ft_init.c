@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 14:44:48 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/11/24 20:10:30 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/11/24 21:50:47 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,12 @@ int	ft_second_son(int tub[], char *argv[], char *envp[], char *path[])
 		ft_kid_two(tub, argv, envp, path);
 	else
 	{
+		free (path);
 		close(tub[0]);
 		close(tub[1]);
-		waitpid(second_son, &status, WNOHANG);
+		wait(&status);
+		if (WIFEXITED(status))
+			return (WEXITSTATUS(status));
 	}
 	return (0);
 }
@@ -53,7 +56,7 @@ int	ft_init(char *argv[], char *envp[], char *path[])
 	if (first_son == 0)
 		ft_kid_one(tub, &argv[1], envp, path);
 	else
-		ft_second_son(tub, &argv[3], envp, path);
+		return (ft_second_son(tub, &argv[3], envp, path));
 	return (0);
 }
 
@@ -74,6 +77,5 @@ int	main(int argc, char *argv[], char *envp[])
 			path = ft_split(&envp[i][5], ':');
 		i++;
 	}
-	ft_init(argv, envp, path);
-	return (0);
+	return (ft_init(argv, envp, path));
 }
