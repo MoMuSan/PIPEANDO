@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 18:11:24 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/11/22 17:21:08 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/11/24 20:12:20 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_tube_read(int tub[2], int fd)
 	close(fd);
 }
 
+//write end
 void	ft_tube_write(int tub[2], int fd)
 {
 	dup2(fd, 1);
@@ -37,7 +38,10 @@ void	ft_kid_one(int tub[2], char *argv[], char *envp[], char *path[])
 
 	fd = open(argv[0], O_RDONLY);
 	if (fd < 0)
+	{
 		perror("ErroR:");
+		exit (1);
+	}
 	ft_tube_read(tub, fd);
 	cmd1 = ft_split(argv[1], ' ');
 	ft_red_in(path, cmd1, envp);

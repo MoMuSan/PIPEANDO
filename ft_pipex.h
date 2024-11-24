@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 14:47:40 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/11/21 19:58:51 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/11/24 20:09:58 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include "libft/libft.h"
 # include <sys/wait.h>
+# include <sys/types.h>
 
 int		ft_init(char *argv[], char *envp[], char *path[]);
 void	ft_kid_one(int tub[2], char *argv[], char *envp[], char *path[]);

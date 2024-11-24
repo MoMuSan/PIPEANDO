@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 21:45:43 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/11/21 19:31:23 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/11/24 20:24:45 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,20 @@ void	ft_red_in(char **path, char **cmd1, char **envp)
 
 	envp = NULL;
 	i = 0;
-	while (path && path[i] != NULL)
+	if (ft_strrchr(cmd1[0], '/') != 0)
+		join = cmd1[0];
+	else
 	{
-		join = ft_strjoin(path[i], "/");
-		join = ft_strjoin(join, cmd1[0]);
-		if (access(join, F_OK) == 0)
-			break ;
-		i++;
+		while (path && path[i] != NULL)
+		{
+			join = ft_strjoin(path[i], "/");
+			join = ft_strjoin(join, cmd1[0]);
+			if (access(join, F_OK) == 0)
+				break ;
+			i++;
+		}
 	}
 	execve(join, cmd1, envp);
-	perror("Execve Failed");
+	perror("Error execve");
 	exit (1);
 }
-
