@@ -48,5 +48,5 @@ if (second_son == 0)
 		{
 			ft_kid_two(tub, &argv[3], envp, path);
 		}
-	Es argv[3], porque en este punto del programa, aun sigo 
-	contando desde el inicio
+	/*Es argv[3], porque en este punto del programa, aun sigo 
+	contando desde el inicio*/

@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 21:45:43 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/11/24 21:53:33 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/12/01 15:39:15 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,21 @@ void	ft_red_in(char **path, char **cmd1, char **envp)
 			i++;
 		}
 	}
-	free(path);
+	ft_free_path(path);
 	execve(join, cmd1, envp);
 	perror(cmd1[0]);
 	exit (errno);
+}
+
+void	ft_free_path(char **path)
+{
+	int	j;
+
+	j = 0;
+	while (path[j] != 0)
+	{
+		free(path[j]);
+		j++;
+	}
+	free(path);
 }

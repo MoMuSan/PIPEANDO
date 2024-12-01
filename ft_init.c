@@ -6,7 +6,7 @@
 /*   By: monmunoz <monmunoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 14:44:48 by monmunoz          #+#    #+#             */
-/*   Updated: 2024/11/24 21:50:47 by monmunoz         ###   ########.fr       */
+/*   Updated: 2024/12/01 15:38:13 by monmunoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_second_son(int tub[], char *argv[], char *envp[], char *path[])
 		ft_kid_two(tub, argv, envp, path);
 	else
 	{
-		free (path);
+		ft_free_path(path);
 		close(tub[0]);
 		close(tub[1]);
 		wait(&status);
